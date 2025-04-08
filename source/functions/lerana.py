@@ -1,4 +1,4 @@
-from source import dependencias as f
+from source.dependencias import *
 
 def leitura(path:str):
     with open(path,'r') as arq:
@@ -20,7 +20,7 @@ def getlinhas(doc):
     return getfromdoc(doc, rgx, cols, heads)
 
 def getfromdoc(doc, rgx, cols, heads):
-    tabela = f.re.search(rgx, doc, f.re.DOTALL).group(1).split('\n')
+    tabela = search(rgx, doc, DOTALL).group(1).split('\n')
     tabela = tabela[2:-1]
     out = []
     for lin in tabela:

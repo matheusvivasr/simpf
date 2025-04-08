@@ -1,4 +1,4 @@
-from source import dependencias as f
+from source.dependencias import *
 
 class Barra():
     sb = 100
@@ -23,8 +23,15 @@ class Barra():
         # arrumando os valores do dicionario
         self.updt("index", int(self.index-1))
         self.updt("Sh",1j*self.Sh/self.zb)
-        self.updt("Vb", self.Vb/self.vbs)
-        self.updt("Ab", self.Ab*f.pi/180)
+        if self.tipo == 2:
+            self.updt("Vb", self.Vb/self.vbs)
+            self.updt("Ab", self.Ab*Pi/180)
+        elif self.tipo == 1:
+            self.updt("Vb", self.Vb/self.vbs)
+            self.updt("Ab", 0.0)
+        else:
+            self.updt("Vb", 1.0)
+            self.updt("Ab", 0.0)
         
         pots_input = ['Pg', 'Qg', 'Pl', 'Ql']
         for pot in pots_input:
@@ -47,9 +54,12 @@ class Barra():
     def limitar_q(self, a): return max(self.Qn, min(self.Qm, a))
 
     @property
-    def Ebar(self): return self.Vb * f.angulo(1j*self.Ab)
+    def Ebar(self): 
+        try:
+            valor = (self.Vb * angulo(1j*self.Ab))
+        except:
+            valor = self.Vb
+        return valor
 
     @property
     def Sbar(self): return self.P + 1j*self.Q
-    
-    def malha(self,ybs): return ybs[self.index]

@@ -1,22 +1,22 @@
-from source import dependencias as f
+from source.dependencias import *
 # =
 # ()
 
-def icalc(barras:list[f.Barra],ybus):
+def icalc(barras:list[Barra],ybus):
     Is = [0j for ç in range(len(barras))]
     for bark in barras:
         for barm in barras:
             Is[bark.index] += ybus[bark.index][barm.index] * barm.Ebar
     return Is
 
-def scalc(barras:list[f.Barra],ybus):
+def scalc(barras:list[Barra],ybus):
     Ic = icalc(barras,ybus)
     Sc = [0j for ç in range(len(barras))]
     for bark in barras:
         Sc[bark.index] = bark.Ebar * Ic[bark.index].conjugate()
     return Sc
 
-def deltaS(barras:list[f.Barra],ybus):
+def deltaS(barras:list[Barra],ybus):
     pvect = []
     qvect = []
     Scal = scalc(barras,ybus)
@@ -33,7 +33,7 @@ def deltaS(barras:list[f.Barra],ybus):
     for s in qvect: out.append(s) 
     return out
 
-def jacs(barras:list[f.Barra],ybus):
+def jacs(barras:list[Barra],ybus):
     rnb = range(len(barras))
     Ic = icalc(barras,ybus)
     sda = [[0j for ç in rnb] for ç in rnb]
@@ -48,10 +48,10 @@ def jacs(barras:list[f.Barra],ybus):
             # del bk / del bm
             if bk.index == bm.index:
                 sda[bk.index][bk.index] = (1j*bk.Ebar) * (Ic[bk.index] - ybus[bk.index][bk.index]*bk.Ebar).conjugate()
-                sdv[bk.index][bk.index] = f.angulo(1j*f.fase(bk.Ebar)) * (Ic[bk.index] + ybus[bk.index][bk.index]*bk.Ebar).conjugate()
+                sdv[bk.index][bk.index] = angulo(1j*fase(bk.Ebar)) * (Ic[bk.index] + ybus[bk.index][bk.index]*bk.Ebar).conjugate()
             else:
                 sda[bk.index][bm.index] = (-1j)*(bk.Ebar*(ybus[bk.index][bm.index]*bm.Ebar).conjugate())
-                sdv[bk.index][bm.index] =  bk.Ebar*(ybus[bk.index][bm.index]*f.angulo(1j*f.fase(bm.Ebar))).conjugate()
+                sdv[bk.index][bm.index] =  bk.Ebar*(ybus[bk.index][bm.index]*angulo(1j*fase(bm.Ebar))).conjugate()
     
     # del Pk / 
     for bk in barras:

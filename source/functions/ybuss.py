@@ -1,6 +1,6 @@
-from source import dependencias as f
+from source.dependencias import *
 
-def ybuss(bars:list[f.Barra],lins:list[f.Linha]):
+def ybuss(bars:list[Barra],lins:list[Linha]):
     rnb = range(len(bars))
     ybus = [[0j for ç in rnb] for ç in rnb]
     for lin in lins:
