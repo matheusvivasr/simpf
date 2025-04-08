@@ -1,6 +1,4 @@
 from source.dependencias import *
-# =
-# ()
 
 def icalc(barras:list[Barra],ybus):
     Is = [0j for ç in range(len(barras))]
@@ -15,23 +13,6 @@ def scalc(barras:list[Barra],ybus):
     for bark in barras:
         Sc[bark.index] = bark.Ebar * Ic[bark.index].conjugate()
     return Sc
-
-def deltaS(barras:list[Barra],ybus):
-    pvect = []
-    qvect = []
-    Scal = scalc(barras,ybus)
-
-    for b in barras:
-        delS = b.Sbar - Scal[b.index]
-        if b.tipo == 0:
-            pvect.append(delS.real)
-            qvect.append(delS.imag)
-        if b.tipo == 1:
-            pvect.append(delS.real)
-    out = []
-    for s in pvect: out.append(s)
-    for s in qvect: out.append(s) 
-    return out
 
 def jacs(barras:list[Barra],ybus):
     rnb = range(len(barras))

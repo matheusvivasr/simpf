@@ -14,6 +14,15 @@ def nwt_conc(x0,ybus,eps=0.00001):
         barras = ajustes_x0(x0,deltaX)
         return  barras
 
+def  convr(barras,ybus):
+    Scalc = scalc(barras,ybus)
+    for barra in barras:
+        p = Scalc[barra.index].real
+        q = Scalc[barra.index].imag
+        barra.P = p
+        barra.Q = q
+    return barras
+
 def indices_bons(barras):
     out = []
     intr = []
@@ -60,13 +69,4 @@ def ajustes_x0(barras,delta_x):
     for k in range(len(delv)):
         barras[delv[k]].Vb += delV[k]
 
-    return barras
-
-def  convr(barras,ybus):
-    Scalc = scalc(barras,ybus)
-    for barra in barras:
-        p = Scalc[barra.index].real
-        q = Scalc[barra.index].imag
-        barra.P = p
-        barra.Q = q
     return barras

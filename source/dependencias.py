@@ -18,9 +18,9 @@ from .models.barra        import Barra
 ############################################################
 # ATENCAO: A ORDEM IMPORTA!!
 # SOURCE/FUNCTIONS
-from .functions.lerana    import *
-from .functions.ybuss     import *
-from .functions.fluxo     import *
-from .functions.newton    import *
+from .functions.lerana    import leitura
+from .functions.ybuss     import ybuss
+from .functions.fluxo     import scalc, jacs
+from .functions.newton    import nwt_conc, convr
 
 ############################################################
