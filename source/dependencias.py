@@ -7,7 +7,7 @@ from re                         import DOTALL, search
 from cmath                      import exp as angulo
 from math                       import pi as Pi
 from cmath                      import phase as fase
-from numpy.linalg               import inv as iv
+from numpy.linalg               import inv as matriz_inversa
 
 ############################################################
 # ATENCAO: A ORDEM IMPORTA!!
@@ -20,7 +20,7 @@ from .models.barra        import Barra
 # SOURCE/FUNCTIONS
 from .functions.lerana    import leitura, angulos
 from .functions.ybuss     import ybuss
-from .functions.fluxo     import scalc, jacs
+from .functions.fluxo     import scalc, icalc
 from .functions.newton    import nwt_conc, convr
 
 ############################################################
