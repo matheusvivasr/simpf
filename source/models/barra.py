@@ -59,3 +59,9 @@ class Barra():
 
     def limitar_q(self, a): return max(self.Qn, min(self.Qm, a))
 
+
+def angulos(numero,unidade):
+    if unidade == "rad":
+        return numero*Pi/180
+    elif unidade == "deg":
+        return numero*180/Pi
