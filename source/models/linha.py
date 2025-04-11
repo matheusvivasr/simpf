@@ -25,4 +25,4 @@ class Linha():
         self.updt('bsh', 1j*self.bsh/(2*self.zb) ) 
 
         self.updt('tap', 1/self.tap if self.dados['tap'] else  1)
-        self.updt('phs',angulo(1j*Pi*self.phs/180))
+        self.updt('phs',angulo(1j*angulos(self.phs,"rad")))

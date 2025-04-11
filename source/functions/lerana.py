@@ -32,3 +32,9 @@ def getfromdoc(doc, rgx, cols, heads):
             ini = fim
         out.append(item)
     return out
+
+def angulos(numero,unidade):
+    if unidade == "rad":
+        return numero*Pi/180
+    elif unidade == "deg":
+        return numero*180/Pi
